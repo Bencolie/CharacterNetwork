@@ -1,8 +1,8 @@
 # dealing with regex,string and file paths
 import os,math
 # if line 4 and 5 have been executed, please comment it out
-# import nltk
-# nltk.download("popular")
+#import nltk
+#nltk.download("popular")
 from nltk.tokenize import PunktSentenceTokenizer
 # use spaCy for name entity recognization
 import spacy
@@ -67,4 +67,4 @@ def freqFilter(candidate,text):
     characters = [candidate_index[i] for i in range(len(freq_list)) if freq_list[i] >= math.floor(avg_freq)]
     return characters
 # load the English language model
-nlp = spacy.load('en_core_web_sm') #if error is raised, please do "Python3 -m spacy dowload en_core_web_sm"
+nlp = spacy.load('en_core_web_sm') #if error is raised, please do "Python3.11 -m spacy dowload en_core_web_sm"
