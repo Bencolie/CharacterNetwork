@@ -1,27 +1,11 @@
 # Use venv2
-import spacy,os
+import spacy
 # if line 4 and 5 have been executed, please comment it out
 #import nltk
 #nltk.download("popular")
 from nltk.tokenize import PunktSentenceTokenizer
 from spacy.tokens import Doc
-
-def readText(file_name:str) -> str:
-    # adapt different directory structure
-    file_path = os.path.abspath(f"CorefText/{file_name}.txt")
-    with open(file_path, 'r', encoding='utf-8') as file:
-        text = file.read()
-    return text
-
-def writeText(file_name:str,result_text:str):
-    file_path = os.path.abspath(f"CorefText/{file_name}.txt")
-    try:
-        open(file_path, 'r', encoding='utf-8')
-        print(f'File : {file_name} is already exist!')
-    except IOError:
-        f = open(file_path, "a", encoding='utf-8')
-        f.write(result_text)
-        f.close()
+from FileManagement import *
 
 def CorefResolver(doc:Doc) -> str:
     reference_mapper = dict()
@@ -48,4 +32,5 @@ nlp = spacy.load('en_coreference_web_trf')
 text = readText('AliceInWonderland-ch1')
 doc = nlp(text)
 result_text = CorefResolver(doc)
-writeText('AliceInWonderland-ch1-coref',result_text)
+print(result_text)
+#writeText('AliceInWonderland-ch1-coref',result_text)

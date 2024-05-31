@@ -1,30 +1,14 @@
 # dealing with regex,string and file paths
-import os,math
-# if line 4 and 5 have been executed, please comment it out
-#import nltk
-#nltk.download("popular")
-from nltk.tokenize import PunktSentenceTokenizer
+import math
 # use spaCy for name entity recognization
 import spacy
 from spacy.matcher import Matcher
-from spacy.tokens import Doc
 # use scikit-learn for name freqency filter
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 from functools import reduce
 
-# file input
-def readText(file_name):
-    # adapt different directory structure
-    file_path = os.path.abspath(f"TextData/{file_name}.txt")
-    with open(file_path, 'r', encoding='utf-8') as file:
-        text = file.read()
-    return text
-# setence tokenization
-def sentTokenizer(text):
-    tokenizer = PunktSentenceTokenizer()
-    sentences_list = tokenizer.tokenize(text)
-    return sentences_list
+
 # Rule-based Matcher
 def defPattern():
     matcher = Matcher(nlp.vocab)
