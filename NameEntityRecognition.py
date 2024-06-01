@@ -8,7 +8,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 from functools import reduce
 
-
 # Rule-based Matcher
 def defPattern():
     matcher = Matcher(nlp.vocab)
@@ -49,6 +48,8 @@ def freqFilter(candidate,text):
     avg_freq = reduce(lambda a,b : a+b,freq_list)/len(freq_list)
     candidate_index = list(candidate_freq.index)
     characters = [candidate_index[i] for i in range(len(freq_list)) if freq_list[i] >= math.floor(avg_freq)]
+    if len(characters) < 2:
+        characters.append(candidate_index[1])
     return characters
 # load the English language model
 nlp = spacy.load('en_core_web_sm') #if error is raised, please do "Python3.11 -m spacy dowload en_core_web_sm"

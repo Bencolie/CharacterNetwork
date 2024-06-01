@@ -1,9 +1,15 @@
 import os
 
 # input the text file
-def readText(file_name):
+def readTextData(file_name):
     # adapt different directory structure
     file_path = os.path.abspath(f"TextData/{file_name}.txt")
+    with open(file_path, 'r', encoding='utf-8') as file:
+        text = file.read()
+    return text
+def readTextCoref(file_name):
+    # adapt different directory structure
+    file_path = os.path.abspath(f"CorefText/{file_name}.txt")
     with open(file_path, 'r', encoding='utf-8') as file:
         text = file.read()
     return text
