@@ -17,7 +17,6 @@ def defPattern():
     matcher.add('noun_name',noun_name_pattern)
     return matcher
 def nameEntityRecognition(sentences_list):
-    
     candidate = list()
     for sent in sentences_list:
         doc = nlp(sent)
@@ -47,9 +46,9 @@ def freqFilter(candidate,text):
     freq_list = list(candidate_freq[0])
     avg_freq = reduce(lambda a,b : a+b,freq_list)/len(freq_list)
     candidate_index = list(candidate_freq.index)
-    characters = [candidate_index[i] for i in range(len(freq_list)) if freq_list[i] >= math.floor(avg_freq)]
-    if len(characters) < 2:
-        characters.append(candidate_index[1])
-    return characters
+    characters_freq = [(candidate_index[i],freq_list[i]) for i in range(len(freq_list)) if freq_list[i] >= math.floor(avg_freq)]
+    if len(characters_freq) < 2:
+        characters_freq.append((candidate_index[1],freq_list[1]))
+    return characters_freq
 # load the English language model
 nlp = spacy.load('en_core_web_sm') #if error is raised, please do "Python3.11 -m spacy dowload en_core_web_sm"
