@@ -1,4 +1,4 @@
-# Use venv1
+# Use venv1 : source /Users/bencolie/Desktop/Github/CharacterNetwork/venv1/bin/activate
 from FileManagement import *
 # if line 4 and 5 have been executed, please comment it out
 #import nltk
@@ -15,12 +15,14 @@ def textPreprocess(text:str) -> str:
     quote_regex = r'(".*?")'
     ps_regex = r'(\(.*?\))'
     text_preprocessed = re.sub(quote_regex,
-                               lambda m: m.group(0).replace('.', '<dot>').replace('!', '<excl>'),
+                               lambda m: m.group(0).replace('.', '<dot>').replace('!', '<excl>').replace('?','<ques>'),
                                 text,flags=re.DOTALL)
+
     # removing text in the parathesis
     text_preprocessed = re.sub(ps_regex,
                                 "",
                                 text_preprocessed,flags=re.DOTALL)
+    #print(text_preprocessed)
     return text_preprocessed
 def customPunkt(text_preprocessed:str):
     trainer = PunktTrainer()
@@ -28,7 +30,7 @@ def customPunkt(text_preprocessed:str):
     trainer.train(text_preprocessed)
     return trainer
 def textPostprocess(rowsent_list:list) -> list:
-    sentences_list = [re.sub('<dot>','.',re.sub('<excl>','!',rowsent))
+    sentences_list = [re.sub('<dot>','.',re.sub('<excl>','!',re.sub('<ques>','?',rowsent)))
                       for rowsent in rowsent_list]    
     return sentences_list
 def sentTokenizer(text:str) -> list:

@@ -7,7 +7,7 @@ def networkxDisplay(sentiment_matrix,characters_freq):
     # get the characters list and their frequency value
     characters = list(zip(*characters_freq))[0]
     frequency =  list(zip(*characters_freq))[1]
-    node_size = [ freq*100 for freq in frequency]
+    node_size = [ freq*5 for freq in frequency]
     # extract edge info from matrix
     shape = sentiment_matrix.shape[0]
     sentiment_edge = list()
@@ -52,8 +52,7 @@ sentiment_matrix = np.array([
     [0.2, 0.6, 0, 1.0, 1.1, 1.2],
     [0.3, 0.7, 1.0, 0, 1.3, 1.4],
     [0.4, 0.8, 1.1, 1.3, 0, 1.5],
-    [0.5, 0.9, 1.2, 1.4, 1.5, 0]
-])
+    [0.5, 0.9, 1.2, 1.4, 1.5, 0]])
 characters_freq = [('A', 5), ('B', 3), ('C', 2), ('D', 4), ('E', 1), ('F', 2)]
 # Run the function with example data
 networkxDisplay(sentiment_matrix, characters_freq)

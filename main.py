@@ -1,18 +1,15 @@
-# Use venv1
+# Use venv1 : source /Users/bencolie/Desktop/Github/CharacterNetwork/venv1/bin/activate
 from FileManagement import *
 from SentTokenizer import *
 from NameEntityRecognition import *
 from Coocurence_Sentiment import * 
 from NetworkDisplay import *
-from nltk.tokenize import sent_tokenize
 
 def main():
     """
     PartI : NameEntityRecognition
-    """
-    
-    #for i in range(1,13):
-    datafile_name = 'AliceInWonderland-ch' + str(3)
+    """ 
+    datafile_name = 'AliceInWonderland'#-ch' + str(12)
     # load the text 
     text = readTextData(datafile_name)
     # Sentence Tokenization
@@ -23,27 +20,16 @@ def main():
     characters_freq = freqFilter(candidate,text)
     characters= list(zip(*characters_freq))[0]
     print(characters)
-    
-    
+                
     """
     PartII : Cooccurence + SentimentAnalysis
     """
-    #for j in range(1,13):
-    coreffile_name = 'AliceInWonderland-coref-ch'+str(3)
+    coreffile_name = 'AliceInWonderland-coref'#-ch'+str(12)
     text = readTextCoref(coreffile_name)
     sentences_list = sent_tokenize(text)
-    """
-    for sent in sentences_list:
-        print(sent)
-        print('-------------')
-    """
-    
     sentiment_matrix,occurence_matrix = sentimentANDoccurenceMatrix(sentences_list,characters)
     print(sentiment_matrix)
-    print('=============================')
-    print(occurence_matrix)
     networkxDisplay(sentiment_matrix,characters_freq)
-    
-    
+
 if __name__ == "__main__":
     main()

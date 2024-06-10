@@ -29,11 +29,11 @@ def CorefResolver(doc:Doc) -> str:
 # load the English language model
 # please pip install https://github.com/explosion/spacy-experimental/releases/download/v0.6.1/en_coreference_web_trf-3.4.0a2-py3-none-any.whl
 nlp = spacy.load('en_coreference_web_trf')
-for i in range (1,13): 
-    datafile_name ='AliceInWonderland-ch'+str(i)
-    text = readTextData(datafile_name)
-    doc = nlp(text)
-    result_text = CorefResolver(doc)
-    #print(result_text)
-    coreffile_name = 'AliceInWonderland-coref-ch'+str(i)
-    writeText(coreffile_name,result_text)
+#for i in range (1,13): 
+datafile_name ='AliceInWonderland' #-ch'+str(i)
+text = readTextData(datafile_name)
+doc = nlp(text)
+result_text = CorefResolver(doc)
+#print(result_text)
+coreffile_name = 'AliceInWonderland-coref'#-ch'+str(i)
+writeText(coreffile_name,result_text)

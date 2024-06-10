@@ -39,8 +39,8 @@ def freqFilter(candidate,text):
     candidate_freq = candidate_freq.T
     candidate_freq = candidate_freq.sort_values(by=0, ascending=False)
     '''Comments for debugging'''
-    #pd.set_option('display.max_rows', None)
-    #print(candidate_freq)
+    # pd.set_option('display.max_rows', None)
+    # print(candidate_freq)
     
     # average frequency to increase acuracy
     freq_list = list(candidate_freq[0])
